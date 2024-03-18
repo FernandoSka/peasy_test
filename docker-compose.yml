@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  peasy_app:
+    user: "${UID}:${GID}"
+    image: peasy_app:v1-front-2024
+    container_name: peasy_app
+    build: .
+    command: bash -c "while true; do sleep 10; done"
+    #command: /usr/local/bin/gunicorn config.wsgi:application -w 2 -b :8000 --reload
+    volumes:
+      - .:/peasy_app
+    ports:
+      - 3000:3000
+      - 80:80
